@@ -1,0 +1,13 @@
+org\example\repository\ResourceRepository.class
+org\example\controller\NotificationController.class
+org\example\model\Student.class
+org\example\service\ResourceService.class
+org\example\controller\ResourceController.class
+org\example\repository\CourseRepository.class
+org\example\model\Resource.class
+org\example\repository\StudentRepository.class
+org\example\service\NotificationService.class
+org\example\model\Course.class
+org\example\StudentCourseManagementSystemApplication.class
+org\example\repository\NotificationRepository.class
+org\example\model\Notification.class
