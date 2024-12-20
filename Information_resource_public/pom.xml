@@ -83,6 +83,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>org-eclipse-jgit</artifactId>
+            <version>RELEASE190</version>
+        </dependency>
+
     </dependencies>
 
     <build>
