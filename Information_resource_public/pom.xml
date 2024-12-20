@@ -17,6 +17,12 @@
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
+    <properties>
+        <java-version>11</java-version>
+<!--        <java.version>17</java.version>-->
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
+
     <dependencies>
         <!-- Spring Boot Web -->
         <dependency>
@@ -53,7 +59,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
 

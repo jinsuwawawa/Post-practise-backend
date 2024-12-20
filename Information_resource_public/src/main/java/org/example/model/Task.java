@@ -10,11 +10,11 @@ public class Task {
     // 主键，自动生成值
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long task_id;
 
     // 任务名称，不能为空，最长100字符
     @Column(nullable = false, length = 100)
-    private String name;
+    private String task_name;
 
     // 任务描述，最长500字符，可为空
     @Column(length = 500)
@@ -26,23 +26,23 @@ public class Task {
 
     // 创建任务的用户 ID，不能为空
     @Column(nullable = false)
-    private Long creatorId;
+    private Long creator_id;
 
     // Getters 和 Setters，提供对象属性的访问和修改方法
-    public Long getId() {
-        return id;
+    public Long getTask_id() {
+        return task_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTask_id(Long task_id) {
+        this.task_id = task_id;
     }
 
-    public String getName() {
-        return name;
+    public String getTask_name() {
+        return task_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTask_name(String task_name) {
+        this.task_name = task_name;
     }
 
     public String getDescription() {
@@ -61,12 +61,12 @@ public class Task {
         this.status = status;
     }
 
-    public Long getCreatorId() {
-        return creatorId;
+    public Long getCreator_id() {
+        return creator_id;
     }
 
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
+    public void setCreator_id(Long creator_id) {
+        this.creator_id = creator_id;
     }
 }
 
