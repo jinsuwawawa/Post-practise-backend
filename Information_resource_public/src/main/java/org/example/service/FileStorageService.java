@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,16 +33,16 @@ public class FileStorageService {
         Files.write(filePath, file.getBytes());
 
         FileStorage fileStorage = new FileStorage();
-        fileStorage.setFileName(fileName);
-        fileStorage.setFilePath(filePath.toString());
-        fileStorage.setUploaderId(uploaderId);
+        fileStorage.setFile_name(fileName);
+        fileStorage.setFile_path(filePath.toString());
+        fileStorage.setUploader_id(uploaderId);
         return fileStorageRepository.save(fileStorage);
     }
 
     public byte[] downloadFile(Integer fileId) throws IOException {
         Optional<FileStorage> optionalFile = fileStorageRepository.findById(fileId);
         if (optionalFile.isPresent()) {
-            Path filePath = Paths.get(optionalFile.get().getFilePath());
+            Path filePath = Paths.get(optionalFile.get().getFile_path());
             return Files.readAllBytes(filePath);
         }
         throw new IOException("File not found");
@@ -50,11 +51,16 @@ public class FileStorageService {
     public void deleteFile(Integer fileId) throws IOException {
         Optional<FileStorage> optionalFile = fileStorageRepository.findById(fileId);
         if (optionalFile.isPresent()) {
-            Path filePath = Paths.get(optionalFile.get().getFilePath());
+            Path filePath = Paths.get(optionalFile.get().getFile_path());
             Files.deleteIfExists(filePath);
             fileStorageRepository.deleteById(fileId);
         } else {
             throw new IOException("File not found");
         }
+    }
+
+    // 获取所有文件
+    public List<FileStorage> getAllFiles() {
+        return fileStorageRepository.findAll();
     }
 }

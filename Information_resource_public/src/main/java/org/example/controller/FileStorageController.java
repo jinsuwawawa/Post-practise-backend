@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/files")
+@RequestMapping("/file-storage")
 public class FileStorageController {
 
     private final FileStorageService fileStorageService;
@@ -22,7 +23,7 @@ public class FileStorageController {
 
     @PostMapping("/upload")
     public ResponseEntity<FileStorage> uploadFile(@RequestParam("file") MultipartFile file,
-                                                  @RequestParam("uploaderId") Integer uploaderId) {
+                                                  @RequestParam("uploader_id") Integer uploaderId) {
         try {
             FileStorage fileStorage = fileStorageService.uploadFile(file, uploaderId);
             return new ResponseEntity<>(fileStorage, HttpStatus.CREATED);
@@ -51,5 +52,15 @@ public class FileStorageController {
         } catch (IOException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
+    }
+
+    // 获取所有文件
+    @GetMapping("/list")
+    public ResponseEntity<List<FileStorage>> listAllFiles() {
+        List<FileStorage> fileList = fileStorageService.getAllFiles();
+        if (fileList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(fileList, HttpStatus.OK);
     }
 }
