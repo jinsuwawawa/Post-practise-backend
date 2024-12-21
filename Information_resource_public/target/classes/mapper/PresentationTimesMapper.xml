@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.PresentationTimesMapper">
+
+    <select id="listPagesUser" resultType="org.example.model.vo.WeekVo">
+        select * from presentation_times p,users u, week_user wu
+        <where>
+            p.time_id=wu.time_id and u.user_id=wu.user_id
+            <if test ="userDto.weekNumber!=null and userDto.weekNumber!=''">
+                and p.week_number like concat("%",#{userDto.weekNumber},"%")
+            </if>
+            <if test ="userDto.weekPlace!=null and userDto.weekPlace!=''">
+                and p.week_place like concat("%",#{weekPlace},"%")
+            </if>
+        </where>
+    </select>
+
+</mapper>
